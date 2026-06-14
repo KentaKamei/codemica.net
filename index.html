@@ -159,6 +159,9 @@
   .weave-icon img{width:100%;height:100%;object-fit:cover;}
   .prod-title{font-family:"Inter",sans-serif;font-weight:600;font-size:22px;color:#2a3140;margin-bottom:6px;}
   .prod-desc{font-size:12.5px;line-height:1.9;color:#5e6776;}
+  .weave-card{flex-direction:column;align-items:stretch;gap:0;}
+  .weave-head{display:flex;align-items:center;gap:18px;}
+  .weave-head .prod-title{margin-bottom:0;}
   .appstore{margin-top:18px;display:inline-block;transition:opacity .2s ease;}
   .appstore:hover{opacity:.85;}
   .appstore svg{height:38px;width:auto;display:block;}
@@ -168,7 +171,7 @@
   .card.prod-trevo:hover{transform:translateY(-2px);box-shadow:0 16px 44px -20px rgba(40,55,80,.28),0 3px 10px -4px rgba(40,55,80,.1);}
   .trevo-banner{width:100%;height:170px;object-fit:cover;object-position:center;border-bottom:1px solid var(--line);background:#f6f7f9;}
   .trevo-body{padding:20px 24px 24px;}
-  .trevo-foot{margin-top:16px;display:flex;flex-direction:column;gap:10px;align-items:flex-start;}
+  .trevo-foot{margin-top:16px;display:flex;flex-direction:column;gap:10px;align-items:center;}
   .app-cta{display:inline-flex;align-items:center;gap:7px;background:var(--teal);color:#fff;font-family:"Inter",sans-serif;font-weight:500;font-size:13px;letter-spacing:.02em;padding:9px 16px;border-radius:9px;transition:background .2s ease;}
   .card.prod-trevo:hover .app-cta{background:var(--teal-deep);}
   .app-cta svg{width:13px;height:13px;}
@@ -324,14 +327,15 @@
     </div>
     <h2 class="jp" id="products-title" style="position:absolute;left:-9999px;">プロダクト</h2>
     <div class="products">
-      <div class="card">
-        <div class="weave-icon" aria-hidden="true">
-          <img src="assets/images/weavelog-icon.png" alt="">
-        </div>
-        <div>
+      <div class="card weave-card">
+        <div class="weave-head">
+          <div class="weave-icon" aria-hidden="true">
+            <img src="assets/images/weavelog-icon.png" alt="">
+          </div>
           <div class="prod-title">Weavelog</div>
-          <div class="prod-desc">日々を綴り、応援し合う日記 SNS。<br>続けたい人と続けたい人が、ゆるくつながる場所。</div>
-          <div style="margin-top:18px;display:flex;flex-direction:column;gap:12px;align-items:flex-start;">
+        </div>
+        <div class="prod-desc" style="margin-top:18px;">日々を綴り、応援し合う日記 SNS。<br>続けたい人と続けたい人が、ゆるくつながる場所です。<br>投稿のストリークや、もらえるリアクションが「もう一日」をそっと後押し。数字で煽るのではなく、静かに背中を押すデザインを大切にしています。</div>
+        <div class="weave-cta" style="margin-top:auto;padding-top:20px;display:flex;flex-direction:column;gap:14px;align-items:center;">
             <a class="appstore" style="margin-top:0;" href="https://apps.apple.com/app/id6753839590" target="_blank" rel="noopener" aria-label="Download Weavelog on the App Store">
               <svg viewBox="0 0 160 48" width="135" height="40" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
                 <rect x="0" y="0" width="160" height="48" rx="9" fill="#0a0a0a"/>
@@ -347,7 +351,6 @@
               <u>weavelog.net で詳しく</u>
             </a>
           </div>
-        </div>
       </div>
       <a class="card prod-trevo" href="https://trevo-codemica.web.app" target="_blank" rel="noopener" aria-label="Trevo を開く（無料・登録不要・ブラウザだけで動く）">
         <img class="trevo-banner" src="assets/images/trevo-og.png" alt="Trevo — 大きな目標を、一枚の木に。">
