@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trevo — 大きな目標を、一枚の木に。</title>
+
+<meta name="description" content="やりたいことが多すぎて動けない人へ。大きな目標を一枚の木に分解して、色で進捗を見える化。ログイン不要・ブラウザだけで動く目標分解アプリ Trevo。">
+<meta name="author" content="Codemica">
+<meta name="theme-color" content="#faf6ec">
+
+<!-- OGP / Twitter Card -->
+<meta property="og:title" content="Trevo — 大きな目標を、一枚の木に。">
+<meta property="og:description" content="やりたいことを分解して、色で進捗を見える化。ログイン不要・ブラウザだけで動く目標分解アプリ。">
+<meta property="og:url" content="https://codemica.net/trevo/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Trevo">
+<meta property="og:image" content="https://codemica.net/assets/images/trevo-og.png">
+<meta property="og:locale" content="ja_JP">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@codemica_app">
+<meta name="twitter:title" content="Trevo — 大きな目標を、一枚の木に。">
+<meta name="twitter:description" content="やりたいことを分解して、色で進捗を見える化。ログイン不要・ブラウザだけで動く目標分解アプリ。">
+<meta name="twitter:image" content="https://codemica.net/assets/images/trevo-og.png">
+
+<link rel="icon" type="image/png" href="/assets/images/icon.png">
+<link rel="apple-touch-icon" href="/assets/images/icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#1c2025;
+    --ink-2:#22262b;
+    --ink-soft:#3b4046;
+    --body:#4a5058;
+    --muted:#6b7178;
+    --muted-2:#7b8188;
+    --blue:#2563eb;
+    --green:#3f9142;
+    --green-bar:#34a853;
+    --green-soft:#9ecb98;
+    --cream:#faf6ec;
+    --line:#e8e6df;
+    --line-2:#ececec;
+    --line-3:#f0f0f0;
+    --card:#ffffff;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:#fff;color:var(--ink-2);
+    font-family:"Noto Sans JP",system-ui,sans-serif;
+    font-weight:400;line-height:1.7;-webkit-font-smoothing:antialiased;
+  }
+  img{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  .zen{font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;}
+  .poppins{font-family:"Poppins",sans-serif;}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px;}
+
+  /* ---------- buttons ---------- */
+  .btn-primary{
+    display:inline-block;background:var(--blue);color:#fff;
+    font-weight:700;border-radius:9px;text-decoration:none;
+    box-shadow:0 4px 12px rgba(37,99,235,.3);
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 7px 18px rgba(37,99,235,.36);background:#1e57d6;}
+  .btn-ghost{
+    display:inline-flex;align-items:center;gap:12px;color:var(--blue);
+    font-weight:700;text-decoration:none;
+  }
+  .btn-ghost:hover{opacity:.8;}
+
+  /* leaf wordmark */
+  .brand{display:flex;align-items:center;gap:8px;}
+  .brand .name{font-family:"Poppins",sans-serif;font-weight:600;color:#20242a;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    background:#faf6ec url('assets/hero-bg.jpg') center center / 100% 100% no-repeat;
+    padding-bottom:56px;overflow:hidden;
+  }
+  .topbar{
+    position:relative;z-index:5;display:flex;align-items:center;justify-content:space-between;
+    padding:22px 40px 0;max-width:var(--maxw);margin:0 auto;gap:20px;
+  }
+  .topbar .name{font-size:24px;}
+  .nav{display:flex;gap:40px;font-size:15px;font-weight:500;color:var(--ink-soft);}
+  .nav a:hover{color:var(--ink);}
+  .topbar .btn-primary{font-size:14px;padding:11px 20px;box-shadow:0 2px 6px rgba(37,99,235,.28);}
+
+  .hero-body{
+    position:relative;z-index:4;display:flex;align-items:center;gap:36px;
+    padding:60px 40px 0;max-width:var(--maxw);margin:0 auto;
+  }
+  .hero-copy{width:400px;flex:none;}
+  .hero-copy h1{
+    font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;
+    font-size:52px;line-height:1.28;letter-spacing:.01em;color:var(--ink);
+  }
+  .hero-copy .lead{margin-top:22px;font-size:16px;line-height:1.9;color:var(--body);font-weight:500;}
+  .hero-actions{display:flex;align-items:center;gap:26px;margin-top:30px;flex-wrap:wrap;}
+  .hero-actions .btn-primary{font-size:17px;padding:15px 30px;}
+  .hero-actions .btn-ghost{font-size:16px;}
+  .hero-note{display:flex;align-items:center;gap:7px;margin-top:26px;font-size:13px;color:var(--muted);font-weight:500;}
+
+  /* browser mockup */
+  .mock{
+    flex:1;background:#fff;border-radius:12px;
+    box-shadow:0 18px 44px rgba(60,55,40,.16);border:1px solid var(--line-2);overflow:hidden;
+  }
+  .mock-bar{display:flex;align-items:center;gap:16px;padding:11px 16px;border-bottom:1px solid var(--line-3);}
+  .dots{display:flex;gap:7px;flex:none;}
+  .dots span{width:11px;height:11px;border-radius:50%;display:inline-block;}
+  .dots .r{background:#ff5f57;}.dots .y{background:#febc2e;}.dots .g{background:#28c840;}
+  .mock-brand{display:flex;align-items:center;gap:5px;flex:none;}
+  .mock-brand .name{font-size:14px;}
+  .mock-icons{display:flex;align-items:center;gap:11px;color:#9aa0a6;font-size:15px;flex:none;}
+  .mock-prog{display:flex;align-items:center;gap:9px;flex:1;min-width:0;}
+  .mock-prog .lbl{font-size:11px;color:var(--muted-2);white-space:nowrap;}
+  .bar{flex:1;max-width:120px;height:7px;border-radius:4px;background:#e7e5df;overflow:hidden;}
+  .bar>i{display:block;height:100%;background:var(--green-bar);border-radius:4px;}
+  .pill{display:flex;align-items:center;gap:6px;border:1px solid #e5e5e5;border-radius:6px;padding:5px 9px;font-size:11px;color:#5b6169;white-space:nowrap;flex:none;}
+  .mock-body{padding:22px;}
+  .ph{
+    border:2px dashed #d7d4cc;border-radius:10px;
+    display:flex;align-items:center;justify-content:center;color:#a7aab0;font-size:15px;
+    background:repeating-linear-gradient(45deg,#fcfbf7,#fcfbf7 12px,#f7f5ef 12px,#f7f5ef 24px);
+  }
+  .shot{width:100%;height:auto;display:block;border-radius:8px;background:#f6f7f9;border:1px solid #eef0f2;}
+
+  /* ---------- generic section ---------- */
+  section{padding:74px 0 0;}
+  .sec-head{text-align:center;}
+  h2.sec-title{
+    font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:30px;color:var(--ink);
+    line-height:1.4;
+  }
+  .sec-sub{margin-top:16px;font-size:15px;color:var(--muted);font-weight:500;}
+
+  /* PROBLEM */
+  .problem-row{display:flex;align-items:center;justify-content:center;gap:34px;margin-top:44px;flex-wrap:wrap;}
+  .arrow-big{font-size:34px;color:var(--ink-soft);}
+  .before-art{width:340px;max-width:100%;}
+  .mock.small{width:430px;max-width:100%;}
+  .mock.small .mock-bar{gap:10px;padding:9px 13px;}
+  .mock.small .dots span{width:8px;height:8px;}
+  .mock.small .mock-brand .name{font-size:11px;}
+  .mock.small .mock-body{padding:16px;}
+
+  /* STEPS */
+  .steps{display:flex;align-items:flex-start;justify-content:center;gap:16px;margin-top:44px;flex-wrap:wrap;}
+  .step{width:210px;text-align:center;}
+  .step .art{width:92px;height:92px;margin:0 auto;object-fit:contain;}
+  .step .st-title{margin-top:10px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:18px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:7px;}
+  .step p{margin-top:9px;font-size:13px;line-height:1.75;color:var(--muted);}
+  .chev{font-size:26px;color:#c4c8cd;padding-top:30px;}
+  .pro-badge{font-family:"Noto Sans JP",sans-serif;font-size:11px;font-weight:700;color:var(--green);border:1px solid var(--green-soft);border-radius:20px;padding:2px 9px;line-height:1.4;}
+
+  /* FEATURES */
+  .features{display:flex;justify-content:center;gap:20px;margin-top:38px;flex-wrap:wrap;}
+  .feat{width:333px;max-width:100%;text-align:left;border:1px solid var(--line);border-radius:12px;padding:22px 24px;background:#fff;}
+  .feat-head{display:flex;align-items:center;gap:12px;}
+  .feat-head .art{width:60px;height:60px;flex:none;object-fit:contain;}
+  .feat-head .ft-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:17px;color:var(--ink);display:flex;align-items:center;gap:7px;}
+  .feat p{margin-top:14px;font-size:13px;line-height:1.8;color:var(--muted);}
+
+  /* USE CASES */
+  .cases{display:flex;justify-content:center;gap:16px;margin-top:38px;flex-wrap:wrap;}
+  .case{width:255px;max-width:100%;border:1px solid var(--line);border-radius:11px;overflow:hidden;text-align:left;background:#fff;}
+  .case .mock-bar{gap:6px;padding:8px 11px;}
+  .case .dots span{width:8px;height:8px;}
+  .case .case-body{padding:12px;}
+  .case .case-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:15px;color:var(--ink);margin-bottom:10px;}
+  .case .ph{height:96px;font-size:11px;border-radius:8px;}
+
+  /* PRICING */
+  .pricing{position:relative;overflow:hidden;padding-bottom:30px;}
+  .pricing .deco{position:absolute;bottom:0;pointer-events:none;z-index:1;opacity:.9;}
+  .plans{position:relative;z-index:2;display:flex;justify-content:center;gap:22px;margin-top:38px;flex-wrap:wrap;}
+  .plan{width:320px;max-width:100%;text-align:left;border:1px solid #e6e4dd;border-radius:14px;padding:26px 28px;background:#fff;}
+  .plan.pro{position:relative;border:2px solid var(--green);}
+  .plan .reco{position:absolute;top:20px;right:22px;background:var(--green);color:#fff;font-size:11px;font-weight:700;padding:4px 11px;border-radius:20px;}
+  .plan .p-name{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:17px;color:var(--ink);}
+  .plan .p-price{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:40px;color:var(--ink);margin:6px 0 18px;}
+  .plan .p-price small{font-size:16px;font-weight:700;}
+  .plan ul{list-style:none;display:flex;flex-direction:column;gap:13px;}
+  .plan li{display:flex;align-items:center;gap:11px;font-size:14px;color:var(--ink-soft);}
+  .plan li .chk{color:var(--green);font-weight:700;}
+  .price-note{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:7px;margin-top:26px;font-size:13px;color:var(--muted);}
+
+  /* FINAL CTA */
+  .final{text-align:center;padding:56px 0 70px;}
+  .final h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:32px;color:var(--ink);}
+  .final .btn-primary{margin-top:26px;font-size:18px;padding:16px 64px;box-shadow:0 5px 14px rgba(37,99,235,.32);}
+
+  /* FOOTER */
+  footer{border-top:1px solid #eeece6;}
+  .foot{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:26px 40px;max-width:var(--maxw);margin:0 auto;flex-wrap:wrap;}
+  .foot .brand .name{font-size:16px;}
+  .foot .by{font-size:13px;color:#8b9098;}
+  .foot-links{display:flex;gap:30px;font-size:13px;color:#5b6169;}
+  .foot-links span{cursor:default;}
+  .foot .copy{font-size:12px;color:#a7aab0;}
+
+  .leaf{display:inline-block;vertical-align:middle;object-fit:contain;}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:900px){
+    .hero-body{flex-direction:column;align-items:stretch;padding-top:44px;}
+    .hero-copy{width:100%;text-align:center;}
+    .hero-actions{justify-content:center;}
+    .hero-note{justify-content:center;}
+    .problem-row .arrow-big{transform:rotate(90deg);}
+  }
+  @media (max-width:680px){
+    .wrap,.topbar,.hero-body,.foot{padding-left:22px;padding-right:22px;}
+    .nav{display:none;}
+    .hero-copy h1{font-size:38px;}
+    h2.sec-title{font-size:24px;}
+    .final h2{font-size:26px;}
+    .chev{display:none;}
+    .steps{gap:28px;}
+    .step{width:100%;max-width:260px;}
+    .arrow-big{transform:rotate(90deg);}
+    .foot{flex-direction:column;align-items:flex-start;gap:16px;}
+    .foot-links{gap:18px;flex-wrap:wrap;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{transition-duration:.01ms !important;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     ASSET NOTE:
+     Decorative icons/florals use the original Claude Design PNGs
+     (ui_*/bot_* in /trevo/assets/). Product screenshots use the
+     real Trevo maps (trevo-lp-*.png) captured from the app.
+============================================================= -->
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="topbar">
+    <div class="brand">
+      <!-- src: ui_16_leaf-icon.png -->
+      <img class="leaf" src="assets/ui_16_leaf-icon.png" style="width:30px;height:30px;" alt="">
+      <span class="name">Trevo</span>
+    </div>
+    <nav class="nav" aria-label="ページ内ナビゲーション">
+      <a href="#features">機能紹介</a>
+      <a href="#steps">使い方</a>
+      <a href="#pricing">料金</a>
+    </nav>
+    <a class="btn-primary" href="https://trevo-codemica.web.app" target="_blank" rel="noopener">無料で始める</a>
+  </div>
+
+  <div class="hero-body">
+    <div class="hero-copy">
+      <h1 class="zen">大きな目標を、<br>一枚の木に。</h1>
+      <p class="lead">やりたいことが多すぎて動けない人へ。<br>分解して、色で進捗を見える化。</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="https://trevo-codemica.web.app" target="_blank" rel="noopener">無料で始める</a>
+        <a class="btn-ghost" href="https://trevo-codemica.web.app" target="_blank" rel="noopener">デモを見る <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="hero-note">
+        <img class="leaf" src="assets/ui_16_leaf-icon.png" style="width:16px;height:16px;" alt="">
+        ログイン不要・端末に保存
+      </div>
+    </div>
+
+    <!-- Browser mock -->
+    <div class="mock" role="img" aria-label="Trevo の画面イメージ">
+      <div class="mock-bar">
+        <span class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></span>
+        <span class="mock-brand"><img class="leaf" src="assets/ui_16_leaf-icon.png" style="width:16px;height:16px;" alt=""><span class="name poppins">Trevo</span></span>
+        <span class="mock-icons"><span>↺</span><span>↻</span></span>
+        <span class="mock-prog"><span class="lbl">全体の進捗</span><span class="bar"><i style="width:56%"></i></span></span>
+        <span class="pill"><span style="color:#9aa0a6;">⬆</span> エクスポート（PNG）</span>
+        <span class="pill"><span>−</span><span>100%</span><span>＋</span></span>
+      </div>
+      <div class="mock-body">
+        <img class="shot" src="assets/trevo-lp-hero.png" alt="Trevo の目標マップ例：「理想の自分になる」を中目標・タスクへ分解し、進捗を色で表示">
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ PROBLEM ============ -->
+  <section id="problem">
+    <div class="wrap sec-head">
+      <h2 class="sec-title zen">目標を立てた瞬間が、やる気のピーク。</h2>
+      <p class="sec-sub">続かないのは意志のせいじゃなく、目標が“漠然”としているから。</p>
+      <div class="problem-row">
+        <img class="before-art" src="assets/sticky-notes.png" alt="散らかった付箋メモ：漠然とした目標のイメージ">
+
+        <span class="arrow-big" aria-hidden="true">→</span>
+        <div class="mock small" role="img" aria-label="Trevo で整理した状態">
+          <div class="mock-bar">
+            <span class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></span>
+            <span class="mock-brand"><img class="leaf" src="assets/ui_16_leaf-icon.png" style="width:13px;height:13px;" alt=""><span class="name poppins">Trevo</span></span>
+            <span class="mock-icons" style="font-size:11px;">↺ ↻</span>
+            <span class="mock-prog"><span class="lbl" style="font-size:9px;">全体の進捗</span><span class="bar" style="max-width:70px;height:6px;"><i style="width:56%"></i></span></span>
+            <span class="pill" style="font-size:9px;padding:3px 6px;">エクスポート（PNG）</span>
+            <span class="pill" style="font-size:9px;padding:3px 6px;">100%</span>
+          </div>
+          <div class="mock-body">
+            <img class="shot" src="assets/trevo-lp-after.png" alt="Trevo で整理した目標マップ例：「なりたい自分になる」">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3 STEPS ============ -->
+  <section id="steps">
+    <div class="wrap sec-head">
+      <h2 class="sec-title zen">使い方は、3ステップ。</h2>
+      <div class="steps">
+        <div class="step">
+          <img class="art" src="assets/ui_04_notepad-pen-icon.png" alt="">
+          <div class="st-title zen">① 目標を書く</div>
+          <p>やりたいことを、一言で。</p>
+        </div>
+        <span class="chev" aria-hidden="true">›</span>
+        <div class="step">
+          <img class="art" src="assets/ui_05_tree-mindmap-icon.png" alt="">
+          <div class="st-title zen">② AIが下書き <span class="pro-badge">Pro</span></div>
+          <p>達成までの道のりを、<br>枝分かれで下書き。</p>
+        </div>
+        <span class="chev" aria-hidden="true">›</span>
+        <div class="step">
+          <img class="art" src="assets/ui_06_paint-roller-icon.png" alt="">
+          <div class="st-title zen">③ 色で進捗</div>
+          <p>状態を色で塗って、<br>今どこにいるか一目で。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURES ============ -->
+  <section id="features">
+    <div class="wrap sec-head">
+      <h2 class="sec-title zen">Trevoでできること。</h2>
+      <div class="features">
+        <div class="feat">
+          <div class="feat-head">
+            <img class="art" src="assets/ui_07_hierarchy-icon.png" alt="">
+            <span class="ft-title zen">一枚の木に分解</span>
+          </div>
+          <p>大きな目標を、<br>構造のまま俯瞰。</p>
+        </div>
+        <div class="feat">
+          <div class="feat-head">
+            <img class="art" src="assets/ui_08_sparkles-icon.png" alt="">
+            <span class="ft-title zen">AIが下書き <span class="pro-badge" style="font-size:10px;padding:2px 8px;">Pro</span></span>
+          </div>
+          <p>文章や資料から、<br>木を自動で生成。</p>
+        </div>
+        <div class="feat">
+          <div class="feat-head">
+            <img class="art" src="assets/ui_09_progress-circles.png" alt="">
+            <span class="ft-title zen">進捗を色で</span>
+          </div>
+          <p>灰・黄・赤・緑で、<br>状態が動く。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ USE CASES ============ -->
+  <section id="cases">
+    <div class="wrap sec-head">
+      <h2 class="sec-title zen">こんな目標に。</h2>
+      <div class="cases">
+        <!-- 4 cases -->
+        <div class="case">
+          <div class="mock-bar">
+            <img class="leaf" src="assets/ui_16_leaf-icon.png" style="width:11px;height:11px;" alt="">
+            <span class="name poppins" style="font-size:9px;">Trevo</span>
+            <span style="font-size:9px;color:#c4c8cd;">↺ ↻</span>
+            <span class="bar" style="max-width:52px;height:5px;"><i style="width:56%"></i></span>
+            <span style="font-size:8px;color:#a7aab0;">100%</span>
+          </div>
+          <div class="case-body">
+            <div class="case-title zen">3ヶ月で5kg減量</div>
+            <img class="shot" src="assets/trevo-lp-g1-diet.png" alt="目標マップ例：3ヶ月で5kg減量">
+
+          </div>
+        </div>
+        <div class="case">
+          <div class="mock-bar">
+            <img class="leaf" src="assets/ui_16_leaf-icon.png" style="width:11px;height:11px;" alt="">
+            <span class="name poppins" style="font-size:9px;">Trevo</span>
+            <span style="font-size:9px;color:#c4c8cd;">↺ ↻</span>
+            <span class="bar" style="max-width:52px;height:5px;"><i style="width:56%"></i></span>
+            <span style="font-size:8px;color:#a7aab0;">100%</span>
+          </div>
+          <div class="case-body">
+            <div class="case-title zen">簿記2級に合格</div>
+            <img class="shot" src="assets/trevo-lp-g2-exam.png" alt="目標マップ例：簿記2級に合格">
+
+          </div>
+        </div>
+        <div class="case">
+          <div class="mock-bar">
+            <img class="leaf" src="assets/ui_16_leaf-icon.png" style="width:11px;height:11px;" alt="">
+            <span class="name poppins" style="font-size:9px;">Trevo</span>
+            <span style="font-size:9px;color:#c4c8cd;">↺ ↻</span>
+            <span class="bar" style="max-width:52px;height:5px;"><i style="width:56%"></i></span>
+            <span style="font-size:8px;color:#a7aab0;">100%</span>
+          </div>
+          <div class="case-body">
+            <div class="case-title zen">個人開発で起業</div>
+            <img class="shot" src="assets/trevo-lp-g3-startup.png" alt="目標マップ例：個人開発で起業する">
+
+          </div>
+        </div>
+        <div class="case">
+          <div class="mock-bar">
+            <img class="leaf" src="assets/ui_16_leaf-icon.png" style="width:11px;height:11px;" alt="">
+            <span class="name poppins" style="font-size:9px;">Trevo</span>
+            <span style="font-size:9px;color:#c4c8cd;">↺ ↻</span>
+            <span class="bar" style="max-width:52px;height:5px;"><i style="width:56%"></i></span>
+            <span style="font-size:8px;color:#a7aab0;">100%</span>
+          </div>
+          <div class="case-body">
+            <div class="case-title zen">英語で話せる</div>
+            <img class="shot" src="assets/trevo-lp-g4-english.png" alt="目標マップ例：英語で話せるようになる">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRICING ============ -->
+  <section id="pricing" class="pricing">
+    <!-- botanical decorations (Claude Design originals) -->
+    <img class="deco" src="assets/bot_14_flower-clover-ground.png" style="left:-24px;bottom:-6px;width:230px;" alt="">
+    <img class="deco" src="assets/bot_01_clover-cluster.png" style="left:120px;bottom:6px;width:120px;" alt="">
+    <img class="deco" src="assets/bot_08_orange-flower-cluster.png" style="right:-20px;bottom:-4px;width:210px;" alt="">
+    <img class="deco" src="assets/bot_06_yellow-flower-spray.png" style="right:120px;bottom:80px;width:130px;transform:rotate(10deg);" alt="">
+
+    <div class="wrap sec-head">
+      <h2 class="sec-title zen">シンプルな料金。</h2>
+      <div class="plans">
+        <div class="plan">
+          <div class="p-name zen">無料</div>
+          <div class="p-price zen">¥0</div>
+          <ul>
+            <li><span class="chk">✓</span>アカウント不要</li>
+            <li><span class="chk">✓</span>マップ1つ</li>
+            <li><span class="chk">✓</span>基本機能ぜんぶ</li>
+            <li><span class="chk">✓</span>PNG書き出しは永久無料</li>
+          </ul>
+        </div>
+        <div class="plan pro">
+          <span class="reco">おすすめ</span>
+          <div class="p-name zen">Pro</div>
+          <div class="p-price zen">¥680<small>/月</small></div>
+          <ul>
+            <li><span class="chk">✓</span>マップ無制限</li>
+            <li><span class="chk">✓</span>クラウド同期（複数端末）</li>
+            <li><span class="chk">✓</span>通知</li>
+            <li><span class="chk">✓</span>AI生成（月50回）</li>
+          </ul>
+        </div>
+      </div>
+      <div class="price-note">
+        <img class="leaf" src="assets/ui_16_leaf-icon.png" style="width:15px;height:15px;" alt="">
+        PNGは永久無料、無料で使えるものは取り上げません。
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="final">
+    <div class="wrap">
+      <h2 class="zen">今日、最初の一歩を木に。</h2>
+      <a class="btn-primary" href="https://trevo-codemica.web.app" target="_blank" rel="noopener">無料で始める</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="foot">
+    <div class="brand">
+      <img class="leaf" src="assets/ui_16_leaf-icon.png" style="width:20px;height:20px;" alt="">
+      <span class="name">Trevo</span>
+      <span class="by">— by Codemica</span>
+    </div>
+    <!-- 法務ページは未整備のため現状はプレースホルダー（リンク先は後日相談） -->
+    <div class="foot-links">
+      <span>特定商取引法</span>
+      <span>利用規約</span>
+      <span>プライバシーポリシー</span>
+    </div>
+    <div class="copy">© 2026 Codemica</div>
+  </div>
+</footer>
+
+</body>
+</html>
