@@ -162,6 +162,7 @@
   .step .art{width:92px;height:92px;margin:0 auto;object-fit:contain;}
   .step .st-title{margin-top:10px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:18px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:7px;}
   .step p{margin-top:9px;font-size:13px;line-height:1.75;color:var(--muted);}
+  .step .st-note{margin-top:10px;font-size:11px;line-height:1.7;color:#9aa0a6;}
   .chev{font-size:26px;color:#c4c8cd;padding-top:30px;}
   .pro-badge{font-family:"Noto Sans JP",sans-serif;font-size:11px;font-weight:700;color:var(--green);border:1px solid var(--green-soft);border-radius:20px;padding:2px 9px;line-height:1.4;}
 
@@ -271,7 +272,6 @@
       <p class="lead">やりたいことが多すぎて動けない人へ。<br>分解して、色で進捗を見える化。</p>
       <div class="hero-actions">
         <a class="btn-primary" href="https://trevo-codemica.web.app" target="_blank" rel="noopener">無料で始める</a>
-        <a class="btn-ghost" href="https://trevo-codemica.web.app" target="_blank" rel="noopener">デモを見る <span aria-hidden="true">→</span></a>
       </div>
       <div class="hero-note">
         <img class="leaf" src="assets/ui_16_leaf-icon.png" style="width:16px;height:16px;" alt="">
@@ -331,20 +331,21 @@
       <div class="steps">
         <div class="step">
           <img class="art" src="assets/ui_04_notepad-pen-icon.png" alt="">
-          <div class="st-title zen">① 目標を書く</div>
-          <p>やりたいことを、一言で。</p>
+          <div class="st-title zen">① 目標を決める</div>
+          <p>細分化したい大きな目標をひとつ。<br>それが木の幹＝最初のノードになります。</p>
         </div>
         <span class="chev" aria-hidden="true">›</span>
         <div class="step">
           <img class="art" src="assets/ui_05_tree-mindmap-icon.png" alt="">
-          <div class="st-title zen">② AIが下書き <span class="pro-badge">Pro</span></div>
-          <p>達成までの道のりを、<br>枝分かれで下書き。</p>
+          <div class="st-title zen">② 分解してノードを配置</div>
+          <p>中目標・タスクへ枝分かれさせて、<br>つないでいく。</p>
+          <p class="st-note">＋ まとめて整える〈自動整列・無料〉／文章からまるごと下書き〈AI <span class="pro-badge" style="font-size:9px;padding:1px 6px;vertical-align:middle;">Pro</span>〉</p>
         </div>
         <span class="chev" aria-hidden="true">›</span>
         <div class="step">
           <img class="art" src="assets/ui_06_paint-roller-icon.png" alt="">
-          <div class="st-title zen">③ 色で進捗</div>
-          <p>状態を色で塗って、<br>今どこにいるか一目で。</p>
+          <div class="st-title zen">③ 色で管理</div>
+          <p>各ノードの状態を色で<br>（未着手・進行中・ブロック・完了）。<br>全体の進捗もひと目。</p>
         </div>
       </div>
     </div>
